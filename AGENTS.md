@@ -11,7 +11,7 @@ Tests live in `tests/`, generally mirroring package structure. Documentation is 
 Run commands from the repository root, preferably in a virtual environment:
 
 - `python -m pip install -e '.[test,dev]'`: install editable source plus pytest and Ruff tooling. GTK, GObject, and D-Bus system dependencies must also be available; see `docs/installation.md` and the Makefile’s platform dependency targets.
-  The Fedora toolbox `dev` has the `-devel` packages that a pip install compiles against: `python3-devel`, `dbus-devel`, `glib2-devel`, `gtk3-devel`, `gobject-introspection-devel` and `libX11-devel`, plus `gcc-c++` and `pkgconf-pkg-config`. Run commands in it with `toolbox run -c dev <command>`, or open a shell with `toolbox enter dev`.
+  Development packages (compilers, `-devel` headers, linters and other code checks, packaging tools) are in the Fedora toolbox `dev`, not on the host. Run commands that need them with `toolbox run -c dev <command>`; it keeps the current directory. If a development package or tool is missing, install it in the toolbox (`toolbox run -c dev sudo dnf install <package>`), not on the host.
 - `python bin/solaar`: launch the application from the source tree.
 - `python bin/solaar show`: inspect connected receivers and devices.
 - `make format`: format Python code with Ruff.
